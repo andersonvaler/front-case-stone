@@ -21,7 +21,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "api": "json-server --watch backend/db.json  "
     },
     "eslintConfig": {
         "extends": [
@@ -43,6 +44,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.4.13",
+        "json-server": "^0.17.1",
         "postcss": "^8.4.21",
         "tailwindcss": "^3.2.4"
     }
