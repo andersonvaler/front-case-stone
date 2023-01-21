@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3333';
+export const baseUrl = 'http://localhost:3333';
 
 const apiRoutes = {
     posts: '/posts',
