@@ -8,6 +8,17 @@ const apiRoutes = {
     me: '/me',
 };
 
-export function getApiUrl(route: keyof typeof apiRoutes): string {
-    return `${baseUrl}${apiRoutes[route]}`;
+export function getApiUrl(route: keyof typeof apiRoutes, filters?: { name: string; value: string }[]): string {
+    const url = `${baseUrl}${apiRoutes[route]}`;
+
+    if (filters) {
+        const searchParams = new URLSearchParams();
+        filters.forEach(filter => {
+            searchParams.set(filter.name, filter.value);
+        });
+
+        return `${url}?${searchParams.toString()}`;
+    }
+
+    return url;
 }
