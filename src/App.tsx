@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { PostsComponent, UserProfileComponent } from './components';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="flex w-full flex-col sm:flex-row">
+            <div
+                className="w-full shadow-lg sm:w-1/4 mb-5
+                rounded-lg sm:mb-0 bg-gradient-to-tl 
+                to-slate-100 from-indigo-50 border border-gray-200"
+            >
+                <UserProfileComponent />
+            </div>
+            <div className="w-full h-screen overflow-scroll p-0 sm:w-3/4 sm:px-16">
+                <PostsComponent />
+            </div>
+        </div>
+    );
 }
 
 export default App;
