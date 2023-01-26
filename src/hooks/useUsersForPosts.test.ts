@@ -1,6 +1,6 @@
 import { useUsersForPosts } from './useUsersForPosts';
 import { renderHook } from '@testing-library/react';
-import { mockPost, mockUser } from '../mocks';
+import { mockUser } from '../mocks';
 import mockAxios from 'jest-mock-axios';
 
 jest.mock('../services', () => ({

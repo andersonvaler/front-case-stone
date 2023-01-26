@@ -1,4 +1,3 @@
-import './App.css';
 import { PostsComponent, UserProfileComponent } from './components';
 
 function App() {

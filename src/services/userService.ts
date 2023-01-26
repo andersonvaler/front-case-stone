@@ -1,7 +1,6 @@
 import { Filter, User } from '../types';
 import { getApiUrl } from '../helpers';
 import axios, { AxiosResponse } from 'axios';
-import { useUsers } from '../providers/Users';
 
 export const UserService = {
     async getUsers(filters?: Filter[]): Promise<AxiosResponse<User[]>> {
