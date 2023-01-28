@@ -6,11 +6,11 @@ export function HomePage() {
             <div
                 className="w-full shadow-lg sm:w-5/12 lg:w-1/4 mb-5
                 rounded-lg sm:mb-0 bg-gradient-to-tl 
-                to-slate-100 from-indigo-50 border border-gray-200"
+                to-slate-100 from-indigo-50 border border-gray-300"
             >
                 <UserProfileComponent />
             </div>
-            <div className="flex flex-col items-center justfy-center w-full h-full sm:overflow-y-scroll p-0 lg:px-16">
+            <div className="flex flex-col items-center justfy-center w-full sm:overflow-y-scroll p-0 lg:px-16 h-screen">
                 <PostsComponent />
             </div>
         </div>
