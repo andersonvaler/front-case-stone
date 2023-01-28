@@ -33,24 +33,20 @@ export const PostComponent: React.FC<IProps> = ({ postData }): JSX.Element => {
 
     return (
         <div
-            className="mb-20 px-10 py-8 bg-gradient-to-tl 
+            className=" p-5 sm:px-10 sm:py-8 bg-gradient-to-tl 
             from-slate-100 to-indigo-50 border border-gray-200 
-            rounded-lg shadow text-gray-600 sm:w-96 w-86 md:w-auto"
+            rounded-lg shadow text-gray-600 w-86 sm:w-auto"
         >
             {ownerUser && <UserProfileComponent userData={ownerUser} isSummary={true} />}
             <div
-                className="w-full min-w-max rounded-lg flex items-center 
+                className="w-full rounded-lg flex items-center 
                 justify-center border-t pt-4"
             >
-                <img
-                    className="h-auto w-72 md:w-80 lg:w-auto lg:max-h-96 rounded-lg "
-                    src={post.postPic}
-                    alt="Post view"
-                />
+                <img className=" max-h-96 h-auto w-max rounded-lg " src={post.postPic} alt="Post view" />
             </div>
 
             {post.texts && (
-                <p className="mt-4 px-5 font-normal leading-snug">
+                <p className="mt-4 md:px-5 font-normal leading-snug text-justify">
                     {post.texts[0]?.body}
                     {getHashtags(post.hashtags)?.map(hashtag => (
                         <span
@@ -60,7 +56,7 @@ export const PostComponent: React.FC<IProps> = ({ postData }): JSX.Element => {
                     ))}
                 </p>
             )}
-            <div className="flex mt-3 pt-3 px-10 justify-between items-center text-sm border-t">
+            <div className="flex mt-3 pt-3 md:px-10 justify-between items-center text-sm border-t">
                 <span className="font-semibold">{formatDate(post.createdDate)}</span>
                 <div className="select-none rounded-md flex items-center content-center font-semibold hover:bg-slate-200 p-2">
                     {post.likes}

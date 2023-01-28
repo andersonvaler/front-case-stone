@@ -22,7 +22,7 @@ export const PostsComponent: React.FC = (): JSX.Element => {
     }, [setPosts]);
 
     return (
-        <div className=" text-md text-gray-800 p-10 ">
+        <div className=" text-md text-gray-800 p-5 sm:p-10 lg:w-11/12 xl:w-9/12 2xl:w-8/12">
             {posts.map(post => {
                 return (
                     <div key={post.id} className="mb-10">

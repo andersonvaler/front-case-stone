@@ -34,7 +34,7 @@ export const UserProfileComponent: React.FC<IProps> = ({ userData, isSummary }):
     return (
         <>
             {authUser ? (
-                <div className="w-full text-md  text-gray-800 sm:p-3 md:p-6 p-3 ">
+                <div className="w-full text-md  text-gray-700 sm:p-3 md:p-6 p-3 ">
                     <div className="sm:flex-col flex w-full">
                         <img
                             className="w-16 h-16 sm:h-40 sm:w-40 object-cover rounded-lg"
