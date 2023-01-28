@@ -1,6 +1,6 @@
-import { PostsComponent, UserProfileComponent } from './components';
+import { PostsComponent, UserProfileComponent } from '../components';
 
-function App() {
+export function HomePage() {
     return (
         <div className="flex w-full flex-col sm:flex-row text-sm md:text-base">
             <div
@@ -16,5 +16,3 @@ function App() {
         </div>
     );
 }
-
-export default App;

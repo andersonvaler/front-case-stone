@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import App from './App';
 import './index.css';
+import { HomePage } from './pages';
 import { Providers } from './providers';
 import reportWebVitals from './reportWebVitals';
 
@@ -12,7 +12,7 @@ root.render(
         <Providers>
             <BrowserRouter>
                 <Routes>
-                    <Route path="" element={<App />} />
+                    <Route path="" element={<HomePage />} />
                 </Routes>
             </BrowserRouter>
         </Providers>
