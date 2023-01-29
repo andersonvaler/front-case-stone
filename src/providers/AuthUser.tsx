@@ -22,7 +22,15 @@ export const AuthUserProvider: React.FC<IProps> = ({ children }) => {
         });
     }, []);
 
-    return <AuthUserContext.Provider value={{ authUser, setAuthUser }}>{children}</AuthUserContext.Provider>;
+    const value = useMemo(
+        () => ({
+            authUser,
+            setAuthUser,
+        }),
+        [authUser],
+    );
+
+    return <AuthUserContext.Provider value={value}>{children}</AuthUserContext.Provider>;
 };
 
 export const useAuthUser = () => useContext(AuthUserContext);

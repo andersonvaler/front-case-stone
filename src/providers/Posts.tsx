@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 import { Post } from '../types';
 
 interface PostsContextProps {
@@ -15,7 +15,15 @@ const PostsContext = createContext<PostsContextProps>({ posts: [], setPosts: () 
 export const PostsProvider: React.FC<IProps> = ({ children }) => {
     const [posts, setPosts] = useState<Post[]>([]);
 
-    return <PostsContext.Provider value={{ posts, setPosts }}>{children}</PostsContext.Provider>;
+    const value = useMemo(
+        () => ({
+            posts,
+            setPosts,
+        }),
+        [posts],
+    );
+
+    return <PostsContext.Provider value={value}>{children}</PostsContext.Provider>;
 };
 
 export const usePosts = () => useContext(PostsContext);

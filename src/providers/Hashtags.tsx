@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { HashtagsService } from '../services';
 import { Hashtag } from '../types';
 
@@ -21,19 +21,29 @@ const HashtagsContext = createContext<HashtagsContextProps>({
 export const HashtagsProvider: React.FC<IProps> = ({ children }) => {
     const [hashtags, setHashtags] = useState<Hashtag[]>([]);
 
-    useMemo(() => {
+    useEffect(() => {
         HashtagsService.getHashtags().then(response => {
             setHashtags(response.data);
         });
     }, []);
 
-    const getHashtags = (ids: number[]): Hashtag[] => {
-        return hashtags.filter(hashtag => ids.includes(hashtag.id));
-    };
-
-    return (
-        <HashtagsContext.Provider value={{ hashtags, setHashtags, getHashtags }}>{children}</HashtagsContext.Provider>
+    const getHashtags = useCallback(
+        (ids: number[]): Hashtag[] => {
+            return hashtags.filter(hashtag => ids.includes(hashtag.id));
+        },
+        [hashtags],
     );
+
+    const value = useMemo(
+        () => ({
+            hashtags,
+            setHashtags,
+            getHashtags,
+        }),
+        [hashtags, getHashtags],
+    );
+
+    return <HashtagsContext.Provider value={value}>{children}</HashtagsContext.Provider>;
 };
 
 export const useHashtags = () => useContext(HashtagsContext);

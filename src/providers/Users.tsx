@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 import { User } from '../types';
 
 interface UsersContextProps {
@@ -15,11 +15,15 @@ const UsersContext = createContext<UsersContextProps>({ users: [], setUsers: () 
 export const UsersProvider: React.FC<IProps> = ({ children }) => {
     const [users, setUsers] = useState<User[]>([]);
 
-    useEffect(() => {
-        console.log(users);
-    }, [users]);
+    const value = useMemo(
+        () => ({
+            users,
+            setUsers,
+        }),
+        [users],
+    );
 
-    return <UsersContext.Provider value={{ users, setUsers }}>{children}</UsersContext.Provider>;
+    return <UsersContext.Provider value={value}>{children}</UsersContext.Provider>;
 };
 
 export const useUsers = () => useContext(UsersContext);
