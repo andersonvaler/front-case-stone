@@ -19,3 +19,25 @@ code {
         @apply bg-slate-50;
     }
 }
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 42%;
+    right: 45%;
+    transform: translate(50%, -50%);
+    width: 7rem;
+    height: 7rem;
+    border: 5px solid #42bb42;
+    border-top: 5px solid #c7c6c6;
+    border-radius: 50%;
+    animation: spinner 1.9s linear infinite;
+}

@@ -5,16 +5,13 @@ import './index.css';
 import { HomePage } from './pages';
 import { Providers } from './providers';
 import reportWebVitals from './reportWebVitals';
+import { RouterComponent } from './router';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <React.StrictMode>
         <Providers>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="" element={<HomePage />} />
-                </Routes>
-            </BrowserRouter>
+            <RouterComponent />
         </Providers>
     </React.StrictMode>,
 );

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { PostsService } from '../services';
-import { Post, User } from '../types';
+import { AppStateEnum, Post, User } from '../types';
 import { UserProfileComponent } from './UserProfileComponent';
 import { HandThumbUpIcon } from '@heroicons/react/24/outline';
 import { formatDate } from '../helpers';
 import { useUsers } from '../providers/Users';
 import { useHashtags } from '../providers/Hashtags';
+import { useAppState } from '../providers/AppState';
 
 interface IProps {
     postData: Post;
@@ -16,14 +17,22 @@ export const PostComponent: React.FC<IProps> = ({ postData }): JSX.Element => {
     const [post, setPost] = useState<Post>(postData);
     const [ownerUser, setOwnerUser] = useState<User>();
     const { getHashtags } = useHashtags();
+    const { setAppState } = useAppState();
     const { users } = useUsers();
 
     function addLike(): void {
         setIsLoaded(false);
-        PostsService.updatePost(post.id, { likes: post.likes + 1 }).then(response => {
-            setPost({ ...response.data, texts: post.texts });
-            setIsLoaded(true);
-        });
+        PostsService.updatePost(post.id, { likes: post.likes + 1 })
+            .then(response => {
+                setPost({ ...response.data, texts: post.texts });
+                setAppState(AppStateEnum.SUCCESS);
+                setIsLoaded(true);
+            })
+            .catch(error => {
+                setIsLoaded(true);
+                setAppState(AppStateEnum.ERROR);
+                console.error(error);
+            });
     }
 
     useEffect(() => {
