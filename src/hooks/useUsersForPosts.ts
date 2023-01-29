@@ -21,7 +21,10 @@ export const useUsersForPosts = (userIds: number[]) => {
                     setUsers(users);
                     setAppState(AppStateEnum.LOADED);
                 })
-                .catch(error => console.log(error));
+                .catch(error => {
+                    console.error(error);
+                    setAppState(AppStateEnum.ERROR);
+                });
         }
     }, [userIds, setUsers, authUser, setAppState]);
 

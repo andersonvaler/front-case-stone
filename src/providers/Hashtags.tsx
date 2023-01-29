@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { HashtagsService } from '../services';
-import { Hashtag } from '../types';
+import { AppStateEnum, Hashtag } from '../types';
+import { useAppState } from './AppState';
 
 interface HashtagsContextProps {
     hashtags: Hashtag[];
@@ -20,12 +21,18 @@ const HashtagsContext = createContext<HashtagsContextProps>({
 
 export const HashtagsProvider: React.FC<IProps> = ({ children }) => {
     const [hashtags, setHashtags] = useState<Hashtag[]>([]);
+    const { setAppState } = useAppState();
 
     useEffect(() => {
-        HashtagsService.getHashtags().then(response => {
-            setHashtags(response.data);
-        });
-    }, []);
+        HashtagsService.getHashtags()
+            .then(response => {
+                setHashtags(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+                setAppState(AppStateEnum.ERROR);
+            });
+    }, [setAppState]);
 
     const getHashtags = useCallback(
         (ids: number[]): Hashtag[] => {
