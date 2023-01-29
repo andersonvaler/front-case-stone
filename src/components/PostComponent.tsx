@@ -42,7 +42,7 @@ export const PostComponent: React.FC<IProps> = ({ postData }): JSX.Element => {
 
     return (
         <div
-            className=" p-5 sm:px-10 sm:py-8 bg-gradient-to-tl 
+            className=" p-5 sm:px-10 sm:py-4 bg-gradient-to-tl 
             from-slate-100 to-indigo-50 border border-gray-200 
             rounded-lg shadow text-gray-600 w-86 sm:w-auto"
         >
